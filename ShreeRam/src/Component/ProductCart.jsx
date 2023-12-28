@@ -3,11 +3,11 @@ const ProductCart=({data})=>{
     return(
         <>
         <div className="ProductCard">
-          <img src={data.thumbnail} alt="Image" />
-          <div>{data.title}</div>
-          <div>{data.description}</div>
-          <div>{data.rating}Star</div>
-          <div>{data.price}$</div>
+          <img className="img" src={data.thumbnail} alt="Image" />
+          <div className="title">{data.title}</div>
+          <div className="desc">{data.description}</div>
+          <div className="rating">{data.rating}Star</div>
+          <div className="price">{data.price}$</div>
         </div>
         </>
     )

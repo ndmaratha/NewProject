@@ -1,3 +1,4 @@
+import "../src/App.css";
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import Body from "./Component/Body";
 import Header from "./Component/Header";

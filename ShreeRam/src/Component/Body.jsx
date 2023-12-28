@@ -8,12 +8,12 @@ const Body = () => {
 	return loading ? (
 		<Shimmer />
 	) : (
-		<>
+		<div className="bodycard">
 			{MainData.map((item) => {
                     
                     return <ProductCart key={item.id} data={item} />;
 			})}
-		</>
+		</div>
 	);
 };
 export default Body;
