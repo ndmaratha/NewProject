@@ -1,12 +1,11 @@
-body {
+*{
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
+}
+body {
 	width: 100%;
-	height: auto;
 	min-height: 100vh;
-	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-
 }
 
 /* header css */
@@ -16,56 +15,179 @@ body {
 	flex-direction: row;
 	justify-content: space-between;
 	width: 100%;
-	height: 5rem;
+	height: 4rem;
 	border: 2px solid black;
 	margin: 2px;
 	padding: 5px;
-    flex-wrap: nowrap;
-    align-items: center;
+	flex-wrap: nowrap;
+	align-items: center;
+	border-radius: 25px;
 }
 .logo {
-	height: 80px;
-	width: 100%;
-	padding: 5px;
-    object-fit: cover;
+	height: auto;
+	width: 100px;
+	
+	object-fit: cover;
+	border-radius: 25px;
 }
 .ullist {
-display: flex;
-justify-content: space-between;
-width: 30%;
-
+	display: flex;
+	justify-content: space-between;
+	width: 30%;
 }
-.ullist > .linkclass{
-    text-decoration: none;
-    font-size: 1.3rem;
-    color: black;
-    margin: auto;
-    padding: 3px;
+.ullist > .linkclass {
+	text-decoration: none;
+	font-size: 1.3rem;
+	color: black;
+	margin: auto;
+	padding: 3px;
+	text-wrap: nowrap;
 }
-.btn{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-   
-    height: auto;
+.btn {
+	display: flex;
+	justify-content: space-between;
+	margin: 5px;
 }
-.btn > .login{
-    font-size: 2rem;
-    margin: 5px;
-    padding: 10px;
+.btn > .cart,
+.login {
+	font-size: 2rem;
+	margin: 10px;
+	padding: 10px;
 }
+/* 
+shimmer
+ */
 
-
-
+.shimmer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 40px;
+}
+.shimmercard {
+	width: 300px;
+	height: 300px;
+	overflow: hidden;
+	margin: 10px;
+	padding: 20px;
+	border: 1px solid black;
+	border-radius: 25px;
+	background-color: gray;
+}
 /* body card css */
 
-.bodycard{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.bodycard {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	margin: 40px;
+}
+.ProductCard {
+	width: 300px;
+	height: 400px;
+	color: black;
+	overflow: hidden;
+	margin: 10px;
+	padding: 20px;
+	
+	border-radius: 25px;
+	box-shadow: 3px 3px 3px black;
 }
 
-.img{
-    width: 300px;
-    height: 400px;
+.img {
+	width: 100%;
+	height: 200px;
+}
+.ProductCard > .title {
+	font-size: 1.5rem;
+	text-decoration: none !important;
+	color: black;
+	
+}
+.ProductCard > .desc {
+	font-size: 1rem;
+	text-decoration: none !important;
+}
+.ProductCard > .price {
+	font-size: 1.5rem;
+	text-align: center;
+	text-shadow: 1px 1px 3px black;
+	text-decoration: none !important;
+}
+.productaddtocart{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none !important;
+}
+.addtoCart {
+	background-color: yellow;
+	font-size: 1rem;
+	border-radius: 25px;
+	margin: 10px;
+	padding: 5px;
+	
+	text-decoration: none !important;
+}
+
+/* 
+single card css */
+.SingleCard {
+	border: 1px solid black;
+	border-radius: 25px;
+	padding: 10px;
+	margin: 10px;
+}
+.imgCont {
+	border: 1px solid black;
+	border-radius: 25px;
+	padding: 10px;
+	margin: 10px;
+}
+.SingleImg {
+	width: 30%;
+	height: 350px;
+	margin: 5px;
+	border: 1px solid black;
+}
+.SingleTitle {
+	font-size: 3rem;
+	text-align: center;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.SingleDesc {
+	font-size: 1rem;
+	text-align: center;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.SingleRating {
+	font-size: 1rem;
+	text-align: center;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.SinglePrice {
+	font-size: 2rem;
+	text-align: center;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	text-shadow: 1px 1px 3px black;
+}
+.SingleBtn {
+	display: flex;
+	justify-content: center;
+}
+.addtoCart {
+	background-color: yellow;
+	font-size: 1rem;
+	border-radius: 25px;
+	margin: 10px;
+	padding: 5px;
+	
+}
+ .buyNow {
+	background-color: orange;
+	font-size: 1rem;
+	padding: 5px;
+	border-radius: 25px;
+	margin: 10px;
 }

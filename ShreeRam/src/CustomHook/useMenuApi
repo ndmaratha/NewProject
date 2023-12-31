@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 
-const useMainApi = () => {
-	const [MainData, setMainData] = useState([]);
+const useMenuApi = (id) => {
+	const [MenuData, setMenuData] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const fetctMainData = async () => {
 		setLoading(true);
-		const res = await fetch("https://dummyjson.com/products");
+		const res = await fetch(`https://dummyjson.com/products/${id}`);
 		const data = await res.json();
-		
-		setMainData(data.products);
+		console.log(data)
+		setMenuData(data);
 		setLoading(false);
 	};
 	useEffect(() => {
 		fetctMainData();
 	}, []);
 
-	return {loading, MainData };
+	return {loading, MenuData };
 };
-export default useMainApi;
+export default useMenuApi;

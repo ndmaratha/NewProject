@@ -1,8 +1,20 @@
 const Shimmer=()=>{
     return(
-        <>
-        <h1>Loading</h1>
-        </>
+       <div className="shimmer">
+        <div className="shimmercard"></div>
+        <div className="shimmercard"></div>
+        <div className="shimmercard"></div>
+        <div className="shimmercard"></div>
+        <div className="shimmercard"></div>
+        <div className="shimmercard"></div>
+        <div className="shimmercard"></div>
+        <div className="shimmercard"></div>
+        <div className="shimmercard"></div>
+        <div className="shimmercard"></div>
+        <div className="shimmercard"></div>
+        <div className="shimmercard"></div>
+        <div className="shimmercard"></div>
+       </div>
     )
 }
 export default Shimmer;

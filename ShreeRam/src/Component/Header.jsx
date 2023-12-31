@@ -5,14 +5,14 @@ import { IoMdLogIn } from "react-icons/io";
 const Header = () => {
 	return (
 		<div className="header">
-			<Link active to={"/"}>
+			<Link  to={"/"}>
 				<img className="logo" src={Logo} alt="logo" />
 			</Link>
 			<div className="ullist">
 				<Link className="linkclass" to={"/about"}>About Us</Link>
 				<Link className="linkclass" to={"/Contact"}>Contact Us</Link>
 			</div>
-			<div className=".btn">
+			<div className="btn">
 				<FaCartPlus className="cart" />
 				<IoMdLogIn  className="login"/>
 			</div>

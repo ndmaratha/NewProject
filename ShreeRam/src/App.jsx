@@ -6,6 +6,7 @@ import Footer from "./Component/Footer";
 import NotFound from "./Component/NotFound";
 import About from "./Component/About";
 import Contact from "./Component/Contact";
+import SingleProduct from "./Component/SingleProduct";
 
 const App = () => {
 	return (
@@ -34,6 +35,10 @@ export const appRouter = createBrowserRouter([
 			{
 				path: "/contact",
 				element: <Contact />,
+			},
+			{
+				path: "/product/:id",
+				element: <SingleProduct />,
 			},
 		],
 	},
