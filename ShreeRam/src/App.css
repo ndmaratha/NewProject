@@ -78,10 +78,15 @@ shimmer
 
 .bodycard {
 	display: flex;
+	flex-direction: column;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 	margin: 40px;
+}
+.productlist{
+	display: flex;
+	flex-wrap: wrap;
 }
 .ProductCard {
 	width: 300px;

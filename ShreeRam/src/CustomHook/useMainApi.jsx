@@ -15,6 +15,6 @@ const useMainApi = () => {
 		fetctMainData();
 	}, []);
 
-	return {loading, MainData };
+	return {loading, MainData,setMainData };
 };
 export default useMainApi;
