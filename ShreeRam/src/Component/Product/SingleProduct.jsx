@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import Shimmer from "./Shimmer";
-import useMenuApi from "../CustomHook/useMenuApi";
-import useMainApi from "../CustomHook/useMainApi";
-import { filterCategory } from "../utils/helper";
+import Shimmer from "../Shimmer";
+import useMenuApi from "../../CustomHook/useMenuApi";
+import useMainApi from "../../CustomHook/useMainApi";
+import { filterCategory } from "../../utils/helper";
 import ProductList from "./ProductList";
 import { useEffect, useState } from "react";
 const SingleProduct = () => {
@@ -10,7 +10,8 @@ const SingleProduct = () => {
 	const { loading, MenuData } = useMenuApi(id);
 	const productList = useMainApi();
 	const { MainData } = useMainApi();
-	const[showMore,setShowMore]=useState(false);
+	const [showMore, setShowMore] = useState(false);
+
 	return loading ? (
 		<Shimmer />
 	) : (
@@ -53,21 +54,19 @@ const SingleProduct = () => {
 						</div>
 					</div>
 				</div>
-        <button
-      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      onClick={()=>{
-        const data = filterCategory(MenuData?.category, MainData);
-        productList.setMainData(data);
-        setShowMore(true);
-        console.log("useffect"+productList);
-      }}
-    >
-      Show Related Products
-    </button>
+				<button
+					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+					onClick={() => {
+						const data = filterCategory(MenuData?.category, MainData);
+						productList.setMainData(data);
+						setShowMore(true);
+						console.log("useffect" + productList);
+					}}
+				>
+					Show Related Products
+				</button>
 			</div>
-      {
-        showMore?(<ProductList productList={productList}/>):(<></>) 
-      }
+			{showMore ? <ProductList productList={productList} /> : <></>}
 		</>
 	);
 };

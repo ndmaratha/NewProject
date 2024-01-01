@@ -7,14 +7,14 @@ const useMenuApi = (id) => {
 		setLoading(true);
 		const res = await fetch(`https://dummyjson.com/products/${id}`);
 		const data = await res.json();
-		console.log(data)
+
 		setMenuData(data);
 		setLoading(false);
 	};
 	useEffect(() => {
 		fetctMainData();
-	}, []);
+	}, [id]);
 
-	return {loading, MenuData };
+	return { loading, MenuData };
 };
 export default useMenuApi;
