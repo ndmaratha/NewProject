@@ -1,4 +1,4 @@
-import "./index.css"; 
+import "./index.css";
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import Body from "./Component/Body";
 import Header from "./Component/Header/Header";
@@ -7,14 +7,18 @@ import NotFound from "./Component/NotFound";
 import About from "./Component/Header/About";
 import Contact from "./Component/Header/Contact";
 import SingleProduct from "./Component/Product/SingleProduct";
-
+import Login from "./Component/Header/Login";
+import store from "./Redux/Store";
+import { Provider } from "react-redux";
+import Cart from "./Component/Header/Cart";
+import Checkout from "./Component/CheckOut";
 const App = () => {
 	return (
-		<>
+		<Provider store={store}>
 			<Header />
 			<Outlet />
 			<Footer />
-		</>
+		</Provider>
 	);
 };
 
@@ -40,6 +44,15 @@ export const appRouter = createBrowserRouter([
 				path: "/product/:id",
 				element: <SingleProduct />,
 			},
+			{
+				path: "/login",
+				element: <Login />,
+			},
+			{
+				path: "/cart",
+				element: <Cart />,
+			},
+			{ path: "/checkout", element: <Checkout /> },
 		],
 	},
 ]);

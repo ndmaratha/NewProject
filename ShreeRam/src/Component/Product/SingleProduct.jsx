@@ -1,17 +1,19 @@
 import { useParams } from "react-router-dom";
 import Shimmer from "../Shimmer";
+import{addItemToCart} from "/src/Redux/CartSlice";
 import useMenuApi from "../../CustomHook/useMenuApi";
 import useMainApi from "../../CustomHook/useMainApi";
 import { filterCategory } from "../../utils/helper";
 import ProductList from "./ProductList";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 const SingleProduct = () => {
 	const { id } = useParams();
 	const { loading, MenuData } = useMenuApi(id);
 	const productList = useMainApi();
 	const { MainData } = useMainApi();
 	const [showMore, setShowMore] = useState(false);
-
+	const dispatch=useDispatch();
 	return loading ? (
 		<Shimmer />
 	) : (
@@ -45,7 +47,7 @@ const SingleProduct = () => {
 							</div>
 						</div>
 						<div className="flex space-x-4">
-							<button className="px-6 py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 focus:outline-none">
+							<button className="px-6 py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 focus:outline-none" onClick={()=>dispatch(addItemToCart(MenuData))}>
 								Add to Cart
 							</button>
 							<button className="px-6 py-3 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none">

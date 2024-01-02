@@ -10,7 +10,7 @@ const ProductList = ({ productList }) => {
 					key={item.id}
 					className="hover:shadow-xl"
 				>
-					<ProductCart data={item} loading={productList.loading} />
+					<ProductCart data={item}  />
 				</Link>
 			))}
 		</div>
