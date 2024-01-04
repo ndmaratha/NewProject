@@ -1,4 +1,4 @@
-import Logo from "/src/assets/logo.jpg";
+import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { FaCartPlus } from "react-icons/fa";
 import { IoMdLogIn } from "react-icons/io";
