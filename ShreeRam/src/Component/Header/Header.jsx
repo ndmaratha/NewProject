@@ -9,7 +9,7 @@ const Header = () => {
 		<>
 <div className="container mx-auto  flex items-center justify-between p-2 border-black rounded-xl border-2 border-solid">
   <Link className="flex-shrink-0" to={"/"}>
-    <img className="h-20 w-20 rounded-full" src={Logo} alt="logo" />
+    <img className="h-20 w-20 rounded-full" src={Logo} alt="logo" data-testid="logo" />
   </Link>
   <div className="flex space-x-4">
     <Link className="text-gray-800 hover:text-gray-600 text-lg rounded font-bold" to={"/about"}>About Us</Link>
