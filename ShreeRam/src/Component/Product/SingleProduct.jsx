@@ -1,19 +1,20 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Shimmer from "../Shimmer";
-import{addItemToCart} from "/src/Redux/CartSlice";
+import { addItemToCart } from "/src/Redux/CartSlice";
 import useMenuApi from "../../CustomHook/useMenuApi";
 import useMainApi from "../../CustomHook/useMainApi";
 import { filterCategory } from "../../utils/helper";
 import ProductList from "./ProductList";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useDispatch } from "react-redux";
 const SingleProduct = () => {
+	const navigate = useNavigate();
 	const { id } = useParams();
 	const { loading, MenuData } = useMenuApi(id);
 	const productList = useMainApi();
 	const { MainData } = useMainApi();
 	const [showMore, setShowMore] = useState(false);
-	const dispatch=useDispatch();
+	const dispatch = useDispatch();
 	return loading ? (
 		<Shimmer />
 	) : (
@@ -27,6 +28,7 @@ const SingleProduct = () => {
 							alt="Product"
 						/>
 					</div>
+
 					<div>
 						<div className="text-3xl font-semibold mb-4">{MenuData?.title}</div>
 						<div className="text-gray-700 text-lg mb-4">
@@ -47,10 +49,16 @@ const SingleProduct = () => {
 							</div>
 						</div>
 						<div className="flex space-x-4">
-							<button className="px-6 py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 focus:outline-none" onClick={()=>dispatch(addItemToCart(MenuData))}>
+							<button
+								className="px-6 py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 focus:outline-none"
+								onClick={() => dispatch(addItemToCart(MenuData))}
+							>
 								Add to Cart
 							</button>
-							<button className="px-6 py-3 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none">
+							<button
+								onClick={() => navigate("/checkout")}
+								className="px-6 py-3 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none"
+							>
 								Buy Now
 							</button>
 						</div>
@@ -62,7 +70,6 @@ const SingleProduct = () => {
 						const data = filterCategory(MenuData?.category, MainData);
 						productList.setMainData(data);
 						setShowMore(true);
-						console.log("useffect" + productList);
 					}}
 				>
 					Show Related Products

@@ -12,6 +12,7 @@ import store from "./Redux/Store";
 import { Provider } from "react-redux";
 import Cart from "./Component/Header/Cart";
 import Checkout from "./Component/CheckOut";
+import Sucess from "./Component/Sucess";
 const App = () => {
 	return (
 		<Provider store={store}>
@@ -51,6 +52,10 @@ export const appRouter = createBrowserRouter([
 			{
 				path: "/cart",
 				element: <Cart />,
+			},
+			{
+				path: "/sucess",
+				element: <Sucess />,
 			},
 			{ path: "/checkout", element: <Checkout /> },
 		],

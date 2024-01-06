@@ -1,3 +1,5 @@
+
+export const singleProductUrl="http://localhost:3001/product/";
 export const filterData=(search,MainData)=>{
  return MainData.filter((item) => {
     if (search === "" || search == null) {
@@ -8,6 +10,7 @@ export const filterData=(search,MainData)=>{
   });
  
 }
+
 export const filterCategory=(search,MainData)=>{
   return MainData.filter((item) => {
     if (search === "" || search == null) {
