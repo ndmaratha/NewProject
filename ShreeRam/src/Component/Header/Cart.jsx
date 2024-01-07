@@ -1,8 +1,26 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchCartData } from "../../Redux/CartSlice";
+
 const Cart = () => {
 	const cartItems = useSelector((store) => store.cart.items);
     const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
+    const dispatch = useDispatch();
+    useEffect(() => {
+      const fetchCart = async () => {
+        try {
+          // Assuming fetchCartData is an asynchronous action
+          await dispatch(fetchCartData());
+        } catch (error) {
+          // Handle errors if necessary
+          console.error("Error fetching cart data:", error);
+        }
+      };
+  
+      fetchCart();
+    }, []);
 	return (
         <>
         <div className="container mx-auto p-4">
