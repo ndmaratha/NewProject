@@ -8,7 +8,7 @@ const useMenuApi = (id) => {
 	const fetctMainData = async () => {
 		setLoading(true);
 		const response = await axios.post(
-		singleProductUrl+"65995c601cec74b78ea2a14a"
+		singleProductUrl+id
 		);
 
 		setMenuData(response.data);

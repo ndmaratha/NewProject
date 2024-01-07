@@ -1,49 +1,8 @@
-import { useState } from "react";
-import axios from "axios";
+
+import AddtoDb from "../../CustomHook/AddtoDb";
 
 const Contact = () => {
-	const [productData, setProductData] = useState({
-		title: "",
-		description: "",
-		price: 0,
-		rating: 0,
-		brand: "",
-		category: "",
-		thumbnail: "",
-	});
-
-	const handleInputChange = (e) => {
-		const { name, value } = e.target;
-		setProductData({
-			...productData,
-			[name]: value,
-		});
-	};
-
-	const handleFormSubmit = async (e) => {
-		e.preventDefault();
-		
-		
-		try {
-			const response = await axios.post(
-				"http://localhost:3001/api/products",productData
-			);
-
-			setProductData({
-				title: "",
-				description: "",
-				price: 0,
-				rating: 0,
-				brand: "",
-				category: "",
-				thumbnail: "",
-			});
-
-			console.log("Product created successfully:", response.data);
-		} catch (error) {
-			console.error("Error creating product:", error.response.data);
-		}
-	};
+	const {productData,handleFormSubmit,handleInputChange}=AddtoDb();
 
 	return (
 		<div className="max-w-md mx-auto mt-8 p-8 border rounded shadow-lg bg-white">

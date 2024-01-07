@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react";
-import { mainUrl } from "../utils/helper";
 import axios from 'axios'
-const useMainApi = () => {
-	const [MainData, setMainData] = useState([]);
+const useCart = () => {
+	const [cartData, setCartData] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const fetctMainData = async () => {
 		setLoading(true);
-		const res = await axios.get(mainUrl);
-		setMainData(res.data);
+		const res = await axios.get("http://localhost:3001/get/cart");
+		setCartData(res.data);
 		setLoading(false);
 	};
 	useEffect(() => {
 		fetctMainData();
 	}, []);
 
-	return {loading, MainData,setMainData };
+	return {loading, cartData,setCartData };
 };
-export default useMainApi;
+export default useCart;

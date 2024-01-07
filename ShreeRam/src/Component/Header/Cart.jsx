@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import ProductCart from "../Product/ProductCart";
 import { Link } from "react-router-dom";
 const Cart = () => {
 	const cartItems = useSelector((store) => store.cart.items);
@@ -15,7 +14,7 @@ const Cart = () => {
             <div>
               {cartItems.map((item) => (
                 <div
-                  key={item.id}
+                  key={item._id}
                   className="flex items-center justify-between border-b border-gray-300 py-2"
                 >
                   <div className="flex items-center">

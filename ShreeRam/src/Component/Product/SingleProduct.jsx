@@ -5,9 +5,11 @@ import useMenuApi from "../../CustomHook/useMenuApi";
 import useMainApi from "../../CustomHook/useMainApi";
 import { filterCategory } from "../../utils/helper";
 import ProductList from "./ProductList";
-import {  useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
+import AddtoDb from "../../CustomHook/AddtoDb";
 const SingleProduct = () => {
+	const { handleCartSubmit } = AddtoDb();
 	const navigate = useNavigate();
 	const { id } = useParams();
 	const { loading, MenuData } = useMenuApi(id);
@@ -51,7 +53,10 @@ const SingleProduct = () => {
 						<div className="flex space-x-4">
 							<button
 								className="px-6 py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 focus:outline-none"
-								onClick={() => dispatch(addItemToCart(MenuData))}
+								onClick={() => {
+									handleCartSubmit(MenuData);
+									dispatch(addItemToCart(MenuData));
+								}}
 							>
 								Add to Cart
 							</button>

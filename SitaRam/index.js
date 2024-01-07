@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 const StartModel = require("./Schema/StartSchema");
 const ProductModel = require("./Schema/productSchema");
+const CartModel = require("./Schema/cartSchema");
 
 const router = express.Router();
 const app = express();
@@ -62,8 +63,49 @@ router.post("/api/products", async (req, res) => {
 	}
   });
   
-
-
+  router.post("/api/cart", async (req, res) => {
+	try {
+	  // Extract product data from the request body
+	  const { title, description, price, rating, brand, category, thumbnail } = req.body;
+  
+	  // Create a new instance of the ProductModel
+	  const newProduct = new CartModel({
+		title,
+		description,
+		price,
+		rating,
+		brand,
+		category,
+		thumbnail, // Use the direct URL
+	  });
+  
+	  // Save the product data to MongoDB
+	  const savedProduct = await newProduct.save();
+  
+	  res.status(201).json(savedProduct);
+	} catch (error) {
+	  console.error("Error creating product:", error);
+	  res.status(500).json({ error: "Internal Server Error" });
+	}
+  });
+  router.get('/get/cart', async (req, res) => {
+	try {
+	  const products = await CartModel.find();
+	  res.status(200).json(products);
+	} catch (error) {
+	  console.error('Error getting all products:', error);
+	  res.status(500).json({ error: 'Internal Server Error' });
+	}
+  });
+  router.get('/get/products', async (req, res) => {
+	try {
+	  const products = await ProductModel.find();
+	  res.status(200).json(products);
+	} catch (error) {
+	  console.error('Error getting all products:', error);
+	  res.status(500).json({ error: 'Internal Server Error' });
+	}
+  });
 
 router.post('/product/:id', async (req, res) => {
   try {
