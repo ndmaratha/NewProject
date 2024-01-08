@@ -8,6 +8,7 @@ import ProductList from "./ProductList";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import AddtoDb from "../../CustomHook/AddtoDb";
+import RatingComp from "./RatingComp";
 const SingleProduct = () => {
 	const { handleCartSubmit } = AddtoDb();
 	const navigate = useNavigate();
@@ -37,9 +38,7 @@ const SingleProduct = () => {
 							{MenuData?.description}
 						</div>
 						<div className="flex items-center mb-4">
-							<div className="text-xl font-bold text-yellow-500 mr-2">
-								{MenuData?.rating} Star
-							</div>
+							<RatingComp data={MenuData}/>
 							<div className="text-2xl font-bold">${MenuData?.price}</div>
 						</div>
 						<div className="mb-4">
@@ -80,7 +79,7 @@ const SingleProduct = () => {
 					Show Related Products
 				</button>
 			</div>
-			{showMore ? <ProductList productList={productList} /> : <></>}
+			{showMore ? <ProductList productList={productList} /> : <>No releated Product found</>}
 		</>
 	);
 };

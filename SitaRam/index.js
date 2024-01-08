@@ -107,6 +107,24 @@ router.post("/api/products", async (req, res) => {
 	}
   });
 
+router.delete('/cart/:id', async (req, res) => {
+  try {
+    const productId = req.params.id;
+
+    // Use the findById method to find the product by ID
+    const product = await CartModel.findByIdAndDelete(productId);
+
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    res.status(200).json(product);
+  } catch (error) {
+    console.error('Error getting product by ID:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 router.post('/product/:id', async (req, res) => {
   try {
     const productId = req.params.id;
