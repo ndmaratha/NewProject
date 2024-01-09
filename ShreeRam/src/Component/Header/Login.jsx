@@ -13,9 +13,11 @@ const Login = () => {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
+      console.log(user)
       setShowPopup(true);
       setTimeout(() => {
         navigate("/");
+        console.log("running")
       }, 1500); // Adjust the delay as needed
     } catch (error) {
       console.error("Error signing in with Google:", error.message);

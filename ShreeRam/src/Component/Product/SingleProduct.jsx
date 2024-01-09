@@ -38,7 +38,7 @@ const SingleProduct = () => {
 							{MenuData?.description}
 						</div>
 						<div className="flex items-center mb-4">
-							<RatingComp data={MenuData}/>
+							<RatingComp data={MenuData} />
 							<div className="text-2xl font-bold">${MenuData?.price}</div>
 						</div>
 						<div className="mb-4">
@@ -79,7 +79,7 @@ const SingleProduct = () => {
 					Show Related Products
 				</button>
 			</div>
-			{showMore ? <ProductList productList={productList} /> : <>No releated Product found</>}
+			{showMore ? <ProductList productList={productList} /> : <></>}
 		</>
 	);
 };
