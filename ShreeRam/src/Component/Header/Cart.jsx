@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
+import { toast } from "react-toastify";
 const Cart = () => {
 	const cartItems = useSelector((store) => store.cart.items);
 	const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
@@ -45,6 +46,16 @@ const Cart = () => {
 										className="text-red-500 focus:outline-none"
 										onClick={() => {
 											removeFromCart(item._id);
+											toast.info('👍Removed from Cart!', {
+												position: "top-center",
+												autoClose: 5000,
+												hideProgressBar: false,
+												closeOnClick: true,
+												pauseOnHover: true,
+												draggable: true,
+												progress: undefined,
+												theme: "dark",
+												});
 										}}
 									>
 										Remove

@@ -9,7 +9,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import AddtoDb from "../../CustomHook/AddtoDb";
 import RatingComp from "./RatingComp";
+import {  toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const SingleProduct = () => {
+	
 	const { handleCartSubmit } = AddtoDb();
 	const navigate = useNavigate();
 	const { id } = useParams();
@@ -50,15 +53,27 @@ const SingleProduct = () => {
 							</div>
 						</div>
 						<div className="flex space-x-4">
+							
 							<button
 								className="px-6 py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 focus:outline-none"
 								onClick={() => {
 									handleCartSubmit(MenuData);
 									dispatch(addItemToCart(MenuData));
+									toast.success('😍 Added to Cart Successfully!', {
+										position: "top-center",
+										autoClose: 5000,
+										hideProgressBar: false,
+										closeOnClick: true,
+										pauseOnHover: true,
+										draggable: true,
+										progress: undefined,
+										theme: "dark",
+										});
 								}}
 							>
 								Add to Cart
 							</button>
+							
 							<button
 								onClick={() => navigate("/checkout")}
 								className="px-6 py-3 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none"
