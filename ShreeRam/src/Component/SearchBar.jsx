@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { filterData } from "../utils/helper";
 import useMainApi from "../CustomHook/useMainApi";
+
 const SearchBar = ({ productList }) => {
+	
 	const [search, setSearch] = useState("");
 	const { MainData } = useMainApi();
 
@@ -20,7 +22,7 @@ const SearchBar = ({ productList }) => {
 				className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 focus:outline-none"
 				onClick={() => {
 					const data = filterData(search, MainData);
-
+                   
 					productList.setMainData(data);
 				}}
 			>

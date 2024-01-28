@@ -14,10 +14,15 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB with a specific database name
-mongoose.connect("mongodb://127.0.0.1:27017/ShreeRam", {
+/*mongoose.connect("mongodb://127.0.0.1:27017/ShreeRam", {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+});*/
+mongoose.connect("mongodb+srv://ndmaratha:i0eti5qpyyF24RWR@ecommerce.gc63gdv.mongodb.net/ShreeRam", {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 });
+
 
 // Use the router for specific routes
 app.use("/", router);
