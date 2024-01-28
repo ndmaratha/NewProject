@@ -8,7 +8,7 @@ const Cart = () => {
 	const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
 	const removeFromCart = async (productId) => {
 		try {
-			const response = await axios.delete(`http://localhost:3001/cart/${productId}`);
+			const response = await axios.delete(`https://ebackend-m32m.onrender.com/cart/${productId}`);
 			console.log("Product deleted successfully", response.data);
 		} catch (error) {
 			console.error("Error deleting product:", error.message);

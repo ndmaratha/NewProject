@@ -42,7 +42,7 @@ export const {
 export const fetchCartData = () => async (dispatch) => {
   try {
     dispatch(fetchCartDataStart());
-    const res = await axios.get("http://localhost:3001/get/cart");
+    const res = await axios.get("https://ebackend-m32m.onrender.com/get/cart");
     dispatch(fetchCartDataSuccess(res.data));
   } catch (error) {
     dispatch(fetchCartDataFailure(error.message));
