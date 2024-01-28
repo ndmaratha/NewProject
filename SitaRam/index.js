@@ -5,10 +5,11 @@ const multer = require("multer");
 const StartModel = require("./Schema/StartSchema");
 const ProductModel = require("./Schema/productSchema");
 const CartModel = require("./Schema/cartSchema");
+require('dotenv').config();
 
 const router = express.Router();
 const app = express();
-const port = 3001;
+const port = process.env.PORT||3001;
 
 app.use(cors());
 app.use(express.json());
@@ -18,7 +19,8 @@ app.use(express.json());
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 });*/
-mongoose.connect("mongodb+srv://ndmaratha:i0eti5qpyyF24RWR@ecommerce.gc63gdv.mongodb.net/ShreeRam", {
+
+mongoose.connect(process.env.Database, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 });
@@ -153,4 +155,5 @@ app.get("/", (req, res) => {
 
 app.listen(port, () => {
 	console.log(`Example app listening on port ${port}`);
+	
 });
