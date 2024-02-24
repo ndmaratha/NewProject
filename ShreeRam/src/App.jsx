@@ -7,12 +7,13 @@ import NotFound from "./Component/NotFound";
 import About from "./Component/Header/About";
 import Contact from "./Component/Header/Contact";
 import SingleProduct from "./Component/Product/SingleProduct";
-import Login from "./Component/Header/Login";
 import store from "./Redux/Store";
 import { Provider } from "react-redux";
 import Cart from "./Component/Header/Cart";
 import Checkout from "./Component/CheckOut";
 import Sucess from "./Component/Sucess";
+import Login from "./Component/Authentication/Login";
+import SignUp from "./Component/Authentication/SignUp";
 const App = () => {
 	return (
 		<Provider store={store}>
@@ -48,6 +49,10 @@ export const appRouter = createBrowserRouter([
 			{
 				path: "/login",
 				element: <Login />,
+			},
+			{
+				path: "/signup",
+				element: <SignUp />,
 			},
 			{
 				path: "/cart",
