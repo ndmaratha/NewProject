@@ -8,7 +8,9 @@ const Cart = () => {
 	const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
 	const removeFromCart = async (productId) => {
 		try {
-			const response = await axios.delete(`https://ebackend-m32m.onrender.com/cart/${productId}`);
+			const response = await axios.delete(
+				`${import.meta.env.VITE_BACKEND_URL}/cart/${productId}`
+			);
 			console.log("Product deleted successfully", response.data);
 		} catch (error) {
 			console.error("Error deleting product:", error.message);
@@ -46,7 +48,7 @@ const Cart = () => {
 										className="text-red-500 focus:outline-none"
 										onClick={() => {
 											removeFromCart(item._id);
-											toast.info('👍Removed from Cart!', {
+											toast.info("👍Removed from Cart!", {
 												position: "top-center",
 												autoClose: 5000,
 												hideProgressBar: false,
@@ -55,7 +57,7 @@ const Cart = () => {
 												draggable: true,
 												progress: undefined,
 												theme: "dark",
-												});
+											});
 										}}
 									>
 										Remove

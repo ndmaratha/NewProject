@@ -23,7 +23,7 @@ const AddtoDb = () => {
 
 		try {
 			const response = await axios.post(
-				"https://ebackend-m32m.onrender.com/api/products",
+				import.meta.env.VITE_BACKEND_URL + "/api/products",
 				productData
 			);
 
@@ -45,7 +45,7 @@ const AddtoDb = () => {
 	const handleCartSubmit = async (productData) => {
 		try {
 			const response = await axios.post(
-				"https://ebackend-m32m.onrender.com/api/cart",
+				import.meta.env.VITE_BACKEND_URL + "/api/cart",
 				productData
 			);
 

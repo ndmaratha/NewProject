@@ -1,6 +1,6 @@
 // Signup.js
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { TextField, Button, Typography, Container } from "@mui/material";
@@ -19,15 +19,22 @@ const Signup = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
 		try {
-			const response = await axios.post("/signup", formData);
+			const response = await axios.post(
+				import.meta.env.VITE_BACKEND_URL + "/signup",
+				formData
+			);
 			console.log(response.data);
 			navigate("/login", { replace: true });
 		} catch (error) {
 			console.error("Signup Error:", error.response.data.message);
 		}
 	};
-
+	useEffect(() => {
+		const apikey = import.meta.env.VITE_BACKEND_URL;
+		console.log({ apikey });
+	}, []);
 	return (
 		<Container maxWidth="sm">
 			<Typography variant="h4" align="center" gutterBottom>

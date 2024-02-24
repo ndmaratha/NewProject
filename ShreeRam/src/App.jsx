@@ -14,6 +14,7 @@ import Checkout from "./Component/CheckOut";
 import Sucess from "./Component/Sucess";
 import Login from "./Component/Authentication/Login";
 import SignUp from "./Component/Authentication/SignUp";
+import ProfilePage from "./Component/ProfilePage";
 const App = () => {
 	return (
 		<Provider store={store}>
@@ -53,6 +54,10 @@ export const appRouter = createBrowserRouter([
 			{
 				path: "/signup",
 				element: <SignUp />,
+			},
+			{
+				path: "/profile",
+				element: <ProfilePage />,
 			},
 			{
 				path: "/cart",

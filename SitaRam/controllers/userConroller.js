@@ -5,7 +5,7 @@ const User = require("../Schema/userShema");
 const SignUp = asyncHandler(async (req, res) => {
 	try {
 		// Extract data from request body
-		const { username, email, password } = req.body;
+		const { username, email, password, name } = req.body;
 
 		// Check if user already exists
 		const existingUser = await User.findOne({ email });
@@ -17,7 +17,12 @@ const SignUp = asyncHandler(async (req, res) => {
 		const hashedPassword = await bcrypt.hash(password, 10);
 
 		// Create a new user
-		const newUser = new User({ username, email, password: hashedPassword });
+		const newUser = new User({
+			name,
+			username,
+			email,
+			password: hashedPassword,
+		});
 		await newUser.save();
 
 		// Return success message
@@ -44,9 +49,13 @@ const Login = asyncHandler(async (req, res) => {
 		if (!passwordMatch) {
 			return res.status(401).json({ message: "Invalid password" });
 		}
-
+		const userDataToSend = {
+			username: user.username,
+			email: user.email,
+			name: user.name,
+		};
 		// Return success message or token for authentication
-		res.status(200).json({ message: "Login successful" });
+		res.status(200).json(userDataToSend);
 	} catch (error) {
 		console.error("Error in login:", error);
 		res.status(500).json({ message: "Internal server error" });

@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { TextField, Button, Typography, Container } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { login } from "../../Redux/LoginState";
+import { createProfile } from "../../Redux/ProfileSlice";
 
 const Login = () => {
 	const [formData, setFormData] = useState({
@@ -11,7 +14,7 @@ const Login = () => {
 		password: "",
 	});
 	const navigate = useNavigate();
-
+	const dispatch = useDispatch();
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
@@ -19,11 +22,16 @@ const Login = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await axios.post("/login", formData);
+			const response = await axios.post(
+				import.meta.env.VITE_BACKEND_URL + "/login",
+				formData
+			);
 			console.log(response.data);
+			dispatch(login());
+			dispatch(createProfile(response.data));
 			navigate("/");
 		} catch (error) {
-			console.error("Login Error:", error.response.data.message);
+			console.error("Login Error:", error);
 		}
 	};
 

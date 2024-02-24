@@ -1,71 +1,110 @@
-import Logo from "../../assets/logo.jpg";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import LoginIcon from '@mui/icons-material/Login';
-
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchCartData } from "../../Redux/CartSlice";
-
 import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LoginIcon from "@mui/icons-material/Login";
+import Logo from "../../assets/logo.jpg";
+import {
+	AppBar,
+	Toolbar,
+	IconButton,
+	Menu,
+	MenuItem,
+	Typography,
+} from "@mui/material";
 
 const Header = () => {
-  const items = useSelector(store => store.cart.items);
-  const dispatch = useDispatch();
-    useEffect(() => {
-      const fetchCart = async () => {
-        try {
-          // Assuming fetchCartData is an asynchronous action
-          await dispatch(fetchCartData());
-       
-        } catch (error) {
-          // Handle errors if necessary
-          console.error("Error fetching cart data:", error);
-        }
-      };
-  
-      fetchCart();
-    }, [items]);
-  return (
-    <div className="container mx-auto flex flex-wrap items-center justify-between p-2 border-black rounded-xl border-2 border-solid">
-      <Link className="flex-shrink-0" to={"/"}>
-        <img className="h-20 w-20 rounded-full" src={Logo} alt="logo" data-testid="logo" />
-      </Link>
-      <div className="flex space-x-4">
-        <Link className="text-gray-800 hover:text-gray-600 text-lg rounded font-bold" to={"/about"}>
-          About Us
-        </Link>
-        <Link className="text-gray-800 hover:text-gray-600 text-lg rounded font-bold" to={"/Contact"}>
-          Contact Us
-        </Link>
-      </div>
+	const items = useSelector((store) => store.cart.items);
+	const isLoggedIn = useSelector((store) => store.login.isLoggedIn);
+	const dispatch = useDispatch();
 
-      {/* Menu button for small screens */}
-      <div className="flex items-center space-x-4 md:hidden">
-        <Link  data-testid="cart" to={"/cart"}>
-        <Badge badgeContent={items.length} color="primary">
-      <ShoppingCartIcon />
-    </Badge>
-        </Link>
-        <Link className="text-gray-800 hover:text-gray-600 text-lg rounded font-bold" to={"/login"}>
-        <LoginIcon className="text-gray-800 text-xl rounded" />
-        </Link>
-      </div>
+	const [anchorEl, setAnchorEl] = useState(null);
 
-      {/* Mobile menu */}
-      <div className="hidden md:flex items-center space-x-4">
-        <Link className="text-gray-800 hover:text-gray-600 text-lg rounded font-bold" data-testid="cart" to={"/cart"}>
-        <Badge badgeContent={items.length} color="primary">
-      <ShoppingCartIcon />
-    </Badge>
-        </Link>
-        <Link className="text-gray-800 hover:text-gray-600 text-lg rounded font-bold" to={"/login"}>
-          <LoginIcon className="text-gray-800 text-xl rounded" />
-        </Link>
-      </div>
-    </div>
-  );
+	const handleMenuOpen = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleMenuClose = () => {
+		setAnchorEl(null);
+	};
+
+	// Fetch cart data on component mount
+	useEffect(() => {
+		const fetchCart = async () => {
+			try {
+				dispatch(fetchCartData());
+			} catch (error) {
+				console.error("Error fetching cart data:", error);
+			}
+		};
+
+		fetchCart();
+	}, [items]); // Dependency array should include dispatch only
+
+	return (
+		<AppBar position="static" color="transparent" elevation={0}>
+			<Toolbar>
+				<Link to={"/"}>
+					<img
+						className="h-12 lg:h-16 rounded-full"
+						src={Logo}
+						alt="logo"
+						data-testid="logo"
+					/>
+				</Link>
+				<div style={{ flex: 1 }} />
+				<div>
+					<IconButton color="inherit" component={Link} to={"/cart"}>
+						<Badge badgeContent={items.length} color="primary">
+							<ShoppingCartIcon />
+						</Badge>
+					</IconButton>
+					<IconButton color="inherit" onClick={handleMenuOpen}>
+						{isLoggedIn ? (
+							<AccountCircleIcon />
+						) : (
+							<LoginIcon className="text-gray-800 text-xl rounded" />
+						)}
+					</IconButton>
+					<Menu
+						anchorEl={anchorEl}
+						open={Boolean(anchorEl)}
+						onClose={handleMenuClose}
+					>
+						{isLoggedIn ? (
+							<div>
+								<MenuItem
+									onClick={handleMenuClose}
+									component={Link}
+									to={"/profile"}
+								>
+									Profile
+								</MenuItem>
+								<MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+							</div>
+						) : (
+							<MenuItem
+								onClick={handleMenuClose}
+								component={Link}
+								to={"/login"}
+							>
+								Login
+							</MenuItem>
+						)}
+					</Menu>
+				</div>
+				<Link
+					to={"/about"}
+					className="text-black hover:text-gray-300 text-lg font-bold"
+				>
+					About
+				</Link>
+			</Toolbar>
+		</AppBar>
+	);
 };
 
 export default Header;
