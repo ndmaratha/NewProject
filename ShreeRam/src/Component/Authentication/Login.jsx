@@ -1,11 +1,9 @@
-// Login.js
-
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { TextField, Button, Typography, Container } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { login } from "../../Redux/LoginState";
+import { login, logout } from "../../Redux/LoginState";
 import { createProfile } from "../../Redux/ProfileSlice";
 
 const Login = () => {
@@ -13,6 +11,7 @@ const Login = () => {
 		email: "",
 		password: "",
 	});
+
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const handleChange = (e) => {
@@ -27,6 +26,9 @@ const Login = () => {
 				formData
 			);
 			console.log(response.data);
+			const authToken = response.data.token;
+
+			localStorage.setItem("token", authToken);
 			dispatch(login());
 			dispatch(createProfile(response.data));
 			navigate("/");

@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
 const User = require("../Schema/userShema");
-
+const jwt = require("jsonwebtoken");
 const SignUp = asyncHandler(async (req, res) => {
 	try {
 		// Extract data from request body
@@ -49,10 +49,14 @@ const Login = asyncHandler(async (req, res) => {
 		if (!passwordMatch) {
 			return res.status(401).json({ message: "Invalid password" });
 		}
+		const token = jwt.sign({ id: user._id }, process.env.KEY, {
+			expiresIn: "2m",
+		});
 		const userDataToSend = {
 			username: user.username,
 			email: user.email,
 			name: user.name,
+			token: token,
 		};
 		// Return success message or token for authentication
 		res.status(200).json(userDataToSend);
@@ -61,5 +65,14 @@ const Login = asyncHandler(async (req, res) => {
 		res.status(500).json({ message: "Internal server error" });
 	}
 });
+const Authinticate = asyncHandler(async (req, res, next) => {
+	const token = req.headers["authorization"];
+	if (token == null) return res.sendStatus(401);
 
-module.exports = { SignUp, Login };
+	jwt.verify(token, secretKey, (err, user) => {
+		if (err) return res.sendStatus(403);
+		req.user = user;
+		next();
+	});
+});
+module.exports = { SignUp, Login, Authinticate };

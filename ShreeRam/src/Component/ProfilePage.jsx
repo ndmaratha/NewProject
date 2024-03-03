@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Typography, Container, Grid, Paper, Avatar } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useSelector } from "react-redux";
@@ -8,12 +8,14 @@ const ProfilePage = () => {
 	const user = useSelector((store) => store.profile.data);
 	const isLoggedIn = useSelector((store) => store.login.isLoggedIn);
 	const navigate = useNavigate();
+
 	useEffect(() => {
 		console.log(user);
 		if (!isLoggedIn) {
 			navigate("/login", { replace: true });
 		}
-	}, []);
+	}, [isLoggedIn, navigate, user]);
+
 	return (
 		<Container>
 			<Grid container spacing={3} justifyContent="center">

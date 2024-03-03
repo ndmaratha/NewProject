@@ -83,7 +83,6 @@ const Header = () => {
 								>
 									Profile
 								</MenuItem>
-								<MenuItem onClick={handleMenuClose}>Logout</MenuItem>
 							</div>
 						) : (
 							<MenuItem

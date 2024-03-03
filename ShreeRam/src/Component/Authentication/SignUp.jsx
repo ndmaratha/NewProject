@@ -10,6 +10,7 @@ const Signup = () => {
 		username: "",
 		email: "",
 		password: "",
+		name: "",
 	});
 	const navigate = useNavigate();
 
@@ -46,6 +47,16 @@ const Signup = () => {
 					label="Username"
 					name="username"
 					value={formData.username}
+					onChange={handleChange}
+					required
+					variant="outlined"
+					margin="normal"
+				/>
+				<TextField
+					fullWidth
+					label="name"
+					name="name"
+					value={formData.name}
 					onChange={handleChange}
 					required
 					variant="outlined"
